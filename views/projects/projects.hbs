@@ -1,0 +1,13 @@
+
+{{#if projects}}
+{{#each projects}}
+
+<a href="{{this.endPointsLink}}" target="_blank">{{this.endPointsLink}}</a>
+{{#if this.clientSideLink}}
+<a href="{{this.clientSideLink}}">{{this.clientSideLink}}</a>
+{{/if}}
+{{/each}}
+{{else}}
+
+<h1>there is no project here</h1>
+{{/if}}
