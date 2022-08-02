@@ -44,7 +44,6 @@ router.post('/add-project', (req, res) => {
 
 })
 
-
 router.get("/keep-them-alive", (req, res, next) => {
 
   Project.find()
@@ -63,6 +62,7 @@ router.get("/keep-them-alive", (req, res, next) => {
     })
     .catch(error => console.log("error => ", error))
 });
+
 
   // Project.find()
   //   .then(projectsArr => {
