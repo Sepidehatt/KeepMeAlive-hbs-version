@@ -45,11 +45,29 @@ router.post('/add-project', (req, res) => {
 })
 
 
+router.get("/keep-them-alive", (req, res, next) => {
+
+  Project.find()
+    .then(projects => {
+      console.log(projects)
+      projects.forEach(project => {
+        axios.get(project.endPointsLink)
+          .then((response) => {
+            console.log(response)
+          })
+          .catch(error => console.log("error => ", error))
+      })
+    })
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch(error => console.log("error => ", error))
+});
 
   // Project.find()
   //   .then(projectsArr => {
   //     projectsArr.forEach(project=>{
-  //       axios.post(project.endPointsLink,{userName: project.activeUserName,password : project.activePassword})
+  //       axios.post(project.endPointsLink,{userName: project.activeUserName, password : project.activePassword})
   //       .then()
   //     })
   //   })

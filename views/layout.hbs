@@ -20,7 +20,14 @@
     <nav>
       <a href="/"> Home </a> |
       <a href="/projects">Projects </a> |
-      <a href="/projects/add-project">Submit a new demo link </a>
+      <a href="/projects/add-project">Submit a new demo link </a> |
+     
+      {{#if session.user}}
+         <a href="/auth/logout">Logout </a> |
+      {{else}}
+         <a href="/auth/login">Login </a> |    
+      {{/if}}
+
     </nav>
 
 
