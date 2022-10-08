@@ -1,12 +1,25 @@
 {{#if projects}}
 	{{#each projects}}
 
-		<a href='{{this.endPointsLink}}' target='_blank'>{{this.endPointsLink}}</a>
-		{{#if this.clientSideLink}}
-			<a href='{{this.clientSideLink}}'>{{this.clientSideLink}}</a>
-		{{/if}}
-	{{/each}}
-{{else}}
+		<div class="card mt-3">
+			<ul class="list-group">
 
+				<li class="list-group-item mt-1">
+					<p class="card-text"> Backend link: </p>
+					<a class="card-link" href='{{this.endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
+				</li>
+
+				{{#if this.clientSideLink}}
+					<li class="list-group-item mt-1">
+						<p class="card-text"> Frontend link: </p>
+							<a class="card-link" href='{{this.clientSideLink}}'>{{this.clientSideLink}}</a>
+					</li>
+				{{/if}}
+
+			</ul>
+		</div>
+	{{/each}}
+
+{{else}}
 	<h1>there is no project here</h1>
 {{/if}}

@@ -17,15 +17,15 @@
 
   <body>
 
-    <nav>
-      <a href="/"> Home </a> |
-      <a href="/projects">Projects </a> |
-      <a href="/projects/add-project">Submit a new demo link </a> |
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="nav-link" href="/"> Home </a>
+      <a class="nav-link" href="/projects">Projects </a>
+      <a class="nav-link" href="/projects/add-project">Submit a new demo link </a> 
      
       {{#if session.user}}
-         <a href="/auth/logout">Logout </a> |
+         <a class="nav-link" href="/auth/logout">Logout </a> 
       {{else}}
-         <a href="/auth/login">Login </a> |    
+         <a class="nav-link" href="/auth/login">Login </a>    
       {{/if}}
 
     </nav>
