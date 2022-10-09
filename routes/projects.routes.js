@@ -21,14 +21,13 @@ router.get('/add-project', (req, res) => {
 router.post('/add-project', (req, res) => {
 	const { endPointsLink, clientSideLink, activeUserName, activePassword } = req.body;
 	// console.log(req.body, "reqqqqqqqqq")
+	const newProject = JSON.parse(JSON.stringify(req.body))
 
-	Project.create({
-		endPointsLink,
-		clientSideLink,
-		activeUserName,
-		activePassword,
-	})
-		.then(projectFromDb => res.redirect('/'))
+	Project.create(newProject)
+		.then(projectFromDb => {
+			console.log(projectFromDb)
+			// res.redirect('/')
+		})
 		.catch(err => {
 			console.log('error creating Project on DB', err);
 		});
