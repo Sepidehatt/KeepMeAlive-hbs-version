@@ -2,9 +2,10 @@
 	{{#each projects}}
 
 		<div class="card mt-3">
+			<div class="card-title ps-1"> {{projectName}} </div>
 			<ul class="list-group">
 
-				<li class="list-group-item mt-1">
+				<li class="list-group-item">
 					<p class="card-text"> Backend link: </p>
 					<a class="card-link" href='{{this.endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
 				</li>

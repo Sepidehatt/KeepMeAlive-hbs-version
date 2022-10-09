@@ -19,15 +19,10 @@ router.get('/add-project', (req, res) => {
 });
 
 router.post('/add-project', (req, res) => {
-	const { endPointsLink, clientSideLink, activeUserName, activePassword } = req.body;
-	// console.log(req.body, "reqqqqqqqqq")
-	const newProject = JSON.parse(JSON.stringify(req.body))
+	const newProject = JSON.parse(JSON.stringify(req.body));
 
 	Project.create(newProject)
-		.then(projectFromDb => {
-			console.log(projectFromDb)
-			// res.redirect('/')
-		})
+		.then(projectFromDb => res.redirect('/'))
 		.catch(err => {
 			console.log('error creating Project on DB', err);
 		});
@@ -44,12 +39,10 @@ router.get('/keep-them-alive', (req, res, next) => {
 			});
 		})
 		.then(() => {
-			res.render('projects/projects-alive')
+			res.render('projects/projects-alive');
 		})
 		.catch(error => console.log('error => ', error));
 });
-
-
 
 // Project.find()
 //   .then(projectsArr => {
