@@ -1,54 +1,68 @@
-<form action="/projects/add-project" method="POST" class="mt-3 mb-3">
+<form
+	action='/projects/add-project'
+	method='POST'
+	class='mt-3 mb-3 border rounded d-flex flex-column px-3 py-3'
+>
 
-  <label class="form-label" for="project-name-input"> Project Name: </label>
-    <input
-      id="project-name-input"
-      class="form-control"
-      type="text"
-      placeholder="Project name"
-      name="projectName"
-      required
-    />
+	<label class='form-label'>
+		Project Name:
+		<input
+			class='form-control mt-1'
+			type='text'
+			placeholder='Project name'
+			name='projectName'
+			required
+		/>
+	</label>
 
-  <label class="form-label" for="backend-input"> Backend Link: </label>
-    <input
-      id="backend-input"
-      class="form-control"
-      type="text"
-      placeholder="Backend link to login"
-      name="endPointsLink"
-      required
-    />
+	<label class='form-label'>
+		Backend Link:
+		<input
+			class='form-control mt-1'
+			type='text'
+			placeholder='Backend link to login'
+			name='endPointsLink'
+			required
+		/>
+	</label>
 
-  <label class="form-label mt-1" for="frontend-input"> Frontend Link: </label>
-  <input
-    id="frontend-input"
-    class="form-control"
-    type="text"
-    name="clientSideLink"
-    placeholder="Frontend link"
-  />
+	<label class='form-label mt-1'>
+		Frontend Link:
+		<input
+			class='form-control mt-1'
+			type='text'
+			name='clientSideLink'
+			placeholder='Frontend link'
+		/>
+	</label>
 
-  <label class="form-label mt-1" for="login-input"> Login information (username/email): </label>
-  <input
-    id="login-input"
-    class="form-control"
-    type="text"
-    name="activeUserName"
-    placeholder="Valid login information"
-    required
-  />
+	<label class='form-label mt-1'>
+		Login information (username/email):
+		<input
+			class='form-control mt-1'
+			type='text'
+			name='activeUserName'
+			placeholder='Valid login information'
+			required
+		/>
+	</label>
 
-  <label class="form-label mt-1" for="password-input"> Password: </label>
-  <input
-    id="password-input"
-    class="form-control"
-    type="password"
-    name="activePassword"
-    placeholder="Valid password"
-    required
-  />
+	<label class='form-label mt-1'>
+		Password:
+		<input
+			class='form-control mt-1'
+			type='password'
+			name='activePassword'
+			placeholder='Valid password'
+			required
+		/>
+	</label>
 
-  <button type="submit" class="btn btn-warning mt-3">Submit</button>
+  <div class="d-flex justify-content-center">
+
+	  <button type='submit' class='btn btn-warning mt-3 me-2'> Submit new project </button>
+	  <button type='reset' class='btn btn-outline-danger mt-3'> Cancel </button>
+
+  </div>
+
 </form>
-

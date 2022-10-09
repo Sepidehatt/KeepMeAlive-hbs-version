@@ -1,4 +1,5 @@
 <div class='d-flex justify-content-center'>
+
 	{{#if errorMessage}}
 		{{errorMessage}}
 	{{/if}}
@@ -17,6 +18,13 @@
 			<input class='form-control' type='password' name='password' />
 		</label>
 
-		<button type='submit' class="btn btn-primary mt-3"> Create new account</button>
+		<div class='d-flex justify-content-center'>
+
+		   <button type='submit' class='btn btn-primary mt-3 me-2'> Create new account</button>
+			<button type='reset' class='btn btn-outline-danger mt-3'> Cancel </button>
+
+		</div>
+
 	</form>
+
 </div>
