@@ -13,9 +13,7 @@ document.addEventListener('DOMContentLoaded',() => {
       activePage.innerHTML += 'Keeping all projects alive....' 
       form.setAttribute('hidden', 'true')
       spinner.removeAttribute('hidden')
-    })
-    
-
+    })  
 	},
 	false
 );

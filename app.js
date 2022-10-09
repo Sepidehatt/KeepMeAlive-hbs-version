@@ -29,6 +29,19 @@ app.use((req, res, next) => {
     next()
 })
 
+hbs.registerHelper('isOwner', function(){
+    let sessionId = arguments[0]
+    let projectOwnerId = arguments[1]
+
+    console.log(projectOwnerId)
+
+    if (sessionId == projectOwnerId) {
+        return true
+    }
+    return false
+
+});
+
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
 app.use("/", index);

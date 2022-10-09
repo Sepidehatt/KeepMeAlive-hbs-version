@@ -2,6 +2,7 @@
 {{#if projects}}
 	{{#each projects}}
 
+
 		
 		<div class='card mt-3'>
 
@@ -9,13 +10,17 @@
 
 				<p class='card-title'> {{projectName}} </p>
 
-				<form action="/projects/{{_id}}/delete" method="POST" class="d-flexjustify-content-between">
+				{{#if (isOwner ../session.user._id owner._id) }}
 
-					<a href="/projects/{{_id}}/edit" class="btn btn-outline-warning"> Edit </a>
-					
-					<button type="submit" class="btn btn-outline-danger"> Delete </button>
+					<form action="/projects/{{_id}}/delete" method="POST" class="d-flexjustify-content-between">
 
-				</form>
+						<a href="/projects/{{_id}}/edit" class="btn btn-outline-warning"> Edit </a>
+						
+						<button type="submit" class="btn btn-outline-danger"> Delete </button>
+
+					</form>
+
+				{{/if }}
 
 			</div>
 

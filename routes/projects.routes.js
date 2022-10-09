@@ -17,6 +17,14 @@ router.get('/add-project', (req, res) => {
 
 router.post('/add-project', (req, res) => {
 	const newProject = JSON.parse(JSON.stringify(req.body));
+	const id = req.session.user._id
+
+	newProject.owner = id
+
+
+	console.log(newProject)
+
+	// console.log(id)
 
 	Project.create(newProject)
 		.then(() => res.redirect('/'))
