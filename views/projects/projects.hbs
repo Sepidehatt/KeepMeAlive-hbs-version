@@ -2,18 +2,20 @@
 	{{#each projects}}
 
 		<div class="card mt-3">
+
 			<div class="card-title ps-1"> {{projectName}} </div>
+
 			<ul class="list-group">
 
 				<li class="list-group-item">
 					<p class="card-text"> Backend link: </p>
-					<a class="card-link" href='{{this.endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
+					<a class="card-link" href='{{endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
 				</li>
 
 				{{#if this.clientSideLink}}
 					<li class="list-group-item mt-1">
 						<p class="card-text"> Frontend link: </p>
-							<a class="card-link" href='{{this.clientSideLink}}'>{{this.clientSideLink}}</a>
+						<a class="card-link" href='{{clientSideLink}}'>{{this.clientSideLink}}</a>
 					</li>
 				{{/if}}
 

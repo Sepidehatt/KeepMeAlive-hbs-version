@@ -4,9 +4,8 @@ const Project = require('../models/Project.model');
 
 router.get('/', (req, res) => {
 	Project.find()
-		.then(projectsArr => {
-			console.log(projectsArr);
-			res.render('projects/projects', { projects: projectsArr });
+		.then(projects => {
+			res.render('projects/projects', { projects });
 		})
 		.catch(err => {
 			console.log('error getting project on DB', err);
@@ -22,16 +21,16 @@ router.post('/add-project', (req, res) => {
 	const newProject = JSON.parse(JSON.stringify(req.body));
 
 	Project.create(newProject)
-		.then(projectFromDb => res.redirect('/'))
+		.then(() => res.redirect('/'))
 		.catch(err => {
 			console.log('error creating Project on DB', err);
+			next(err);
 		});
 });
 
 router.get('/keep-them-alive', (req, res, next) => {
 	Project.find()
 		.then(projects => {
-			console.log(projects);
 			projects.forEach(project => {
 				axios.get(project.endPointsLink).then(response => {
 					console.log(response.data);
@@ -41,15 +40,10 @@ router.get('/keep-them-alive', (req, res, next) => {
 		.then(() => {
 			res.render('projects/projects-alive');
 		})
-		.catch(error => console.log('error => ', error));
+		.catch(err => {
+			console.log('error => ', err);
+			next(err);
+		});
 });
-
-// Project.find()
-//   .then(projectsArr => {
-//     projectsArr.forEach(project=>{
-//       axios.post(project.endPointsLink,{userName: project.activeUserName, password : project.activePassword})
-//       .then()
-//     })
-//   })
 
 module.exports = router;
