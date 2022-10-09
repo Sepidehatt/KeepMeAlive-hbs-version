@@ -4,9 +4,7 @@ const Project = require('../models/Project.model');
 
 router.get('/', (req, res) => {
 	Project.find()
-		.then(projects => {
-			res.render('projects/projects', { projects });
-		})
+		.then(projects => res.render('projects/projects', { projects }))
 		.catch(err => {
 			console.log('error getting project on DB', err);
 			next(err);

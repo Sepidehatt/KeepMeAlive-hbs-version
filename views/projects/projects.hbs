@@ -1,21 +1,35 @@
+{{session.user._id}}
 {{#if projects}}
 	{{#each projects}}
 
-		<div class="card mt-3">
+		
+		<div class='card mt-3'>
 
-			<div class="card-title ps-1"> {{projectName}} </div>
+			<div class='card-title px-3 pt-2 d-flex justify-content-between align-items-center'>
 
-			<ul class="list-group">
+				<p class='card-title'> {{projectName}} </p>
 
-				<li class="list-group-item">
-					<p class="card-text"> Backend link: </p>
-					<a class="card-link" href='{{endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
+				<form action="/projects/{{_id}}/delete" method="POST" class="d-flexjustify-content-between">
+
+					<a href="/projects/{{_id}}/edit" class="btn btn-outline-warning"> Edit </a>
+					
+					<button type="submit" class="btn btn-outline-danger"> Delete </button>
+
+				</form>
+
+			</div>
+
+			<ul class='list-group'>
+
+				<li class='list-group-item'>
+					<p class='card-text'> Backend link: </p>
+					<a class='card-link' href='{{endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
 				</li>
 
 				{{#if this.clientSideLink}}
-					<li class="list-group-item mt-1">
-						<p class="card-text"> Frontend link: </p>
-						<a class="card-link" href='{{clientSideLink}}'>{{this.clientSideLink}}</a>
+					<li class='list-group-item mt-1'>
+						<p class='card-text'> Frontend link: </p>
+						<a class='card-link' href='{{clientSideLink}}'>{{this.clientSideLink}}</a>
 					</li>
 				{{/if}}
 
