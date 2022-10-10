@@ -2,6 +2,7 @@ const router = require('express').Router();
 const axios = require('axios');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const Project = require('../models/Project.model');
+const checkOwnership = require('../utils/checkOwnership');
 
 router.get('/', (req, res) => {
 	Project.find()
@@ -55,10 +56,7 @@ router.get('/:projectId/edit', isLoggedIn, (req, res, next) => {
 
 	Project.findById(projectId)
 		.then(project => {
-			console.log(project.owner._id.toString())
-			if (loggedId !== project.owner._id.toString()) {
-				throw new Error("You aren't allowed to update others projects")
-			}
+			checkOwnership(loggedId, project, "You aren't allowed to update others projects")
 			res.render('projects/edit-project', project);
 		})
 		.catch(err => {
@@ -66,5 +64,15 @@ router.get('/:projectId/edit', isLoggedIn, (req, res, next) => {
 			next(err);
 		});
 });
+
+router.post('/:projectId/edit', isLoggedIn, (req, res, next) => {
+	const { projectId } = req.params
+
+	const updatedInfo = JSON.parse(JSON.stringify(req.body))
+
+	console.log(updatedInfo)
+
+	projectId.findByIdAndUpdate()
+})
 
 module.exports = router;
