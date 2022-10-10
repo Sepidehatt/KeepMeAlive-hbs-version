@@ -52,11 +52,12 @@ router.get('/keep-them-alive', (req, res, next) => {
 router.get('/:projectId/edit', isLoggedIn, (req, res, next) => {
 	const { projectId } = req.params;
 
-	const loggedId = req.session.user._id
+	console.log(req.session.user._id)
+	const loggedId = req.session.user._id;
 
 	Project.findById(projectId)
 		.then(project => {
-			checkOwnership(loggedId, project, "You aren't allowed to update others projects")
+			checkOwnership(loggedId, project, "You aren't allowed to update others projects");
 			res.render('projects/edit-project', project);
 		})
 		.catch(err => {
@@ -66,13 +67,37 @@ router.get('/:projectId/edit', isLoggedIn, (req, res, next) => {
 });
 
 router.post('/:projectId/edit', isLoggedIn, (req, res, next) => {
-	const { projectId } = req.params
+	const { projectId } = req.params;
 
-	const updatedInfo = JSON.parse(JSON.stringify(req.body))
+	const updatedInfo = JSON.parse(JSON.stringify(req.body));
 
-	console.log(updatedInfo)
+	const loggedId = req.session.user._id;
 
-	projectId.findByIdAndUpdate()
-})
+	Project
+		.findOneAndUpdate({ _id: projectId, owner: loggedId }, updatedInfo, { new: true })
+		.then(() => {
+			res.redirect('/projects')
+		})
+		.catch(err => {
+			console.log('Error updating the project...', err);
+			next(err);
+		});
+});
+
+router.post('/:projectId/delete', isLoggedIn ,(req, res, next) => {
+	const { projectId } = req.params;
+
+	const loggedId = req.session.user._id;
+
+	Project
+		.findOneAndDelete({ _id: projectId, owner: loggedId })
+		.then(() => {
+			res.redirect('/projects')
+		})
+		.catch(err => {
+			console.log('Error deleting the project...', err);
+			next(err);
+		});
+});
 
 module.exports = router;
