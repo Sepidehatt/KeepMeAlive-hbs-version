@@ -33,8 +33,6 @@ hbs.registerHelper('isOwner', function(){
     let sessionId = arguments[0]
     let projectOwnerId = arguments[1]
 
-    console.log(projectOwnerId)
-
     if (sessionId == projectOwnerId) {
         return true
     }

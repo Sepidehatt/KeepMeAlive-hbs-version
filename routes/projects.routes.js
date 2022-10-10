@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const axios = require('axios');
+const isLoggedIn = require('../middleware/isLoggedIn');
 const Project = require('../models/Project.model');
 
 router.get('/', (req, res) => {
@@ -11,20 +12,15 @@ router.get('/', (req, res) => {
 		});
 });
 
-router.get('/add-project', (req, res) => {
+router.get('/add-project', isLoggedIn, (req, res) => {
 	res.render('projects/add-project');
 });
 
-router.post('/add-project', (req, res) => {
+router.post('/add-project', isLoggedIn, (req, res) => {
 	const newProject = JSON.parse(JSON.stringify(req.body));
-	const id = req.session.user._id
+	const id = req.session.user._id;
 
-	newProject.owner = id
-
-
-	console.log(newProject)
-
-	// console.log(id)
+	newProject.owner = id;
 
 	Project.create(newProject)
 		.then(() => res.redirect('/'))
@@ -48,6 +44,25 @@ router.get('/keep-them-alive', (req, res, next) => {
 		})
 		.catch(err => {
 			console.log('error => ', err);
+			next(err);
+		});
+});
+
+router.get('/:projectId/edit', isLoggedIn, (req, res, next) => {
+	const { projectId } = req.params;
+
+	const loggedId = req.session.user._id
+
+	Project.findById(projectId)
+		.then(project => {
+			console.log(project.owner._id.toString())
+			if (loggedId !== project.owner._id.toString()) {
+				throw new Error("You aren't allowed to update others projects")
+			}
+			res.render('projects/edit-project', project);
+		})
+		.catch(err => {
+			console.log('Error trying to get info to update...', err);
 			next(err);
 		});
 });
