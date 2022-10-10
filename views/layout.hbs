@@ -17,17 +17,33 @@
 
   <body>
 
-    <nav>
-      <a href="/"> Home </a> |
-      <a href="/projects">Projects </a> |
-      <a href="/projects/add-project">Submit a new demo link </a>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light rounded d-flex justify-content-between">
+      
+      <div class="d-flex">
+        
+        <a class="nav-link" href="/"> Home </a>
+        <a class="nav-link" href="/projects">Projects </a>
+        <a class="nav-link" href="/projects/add-project">Submit a new demo link </a> 
+
+      </div>
+     
+      <div class="d-flex">
+
+        {{#if session.user}}
+          <a class="nav-link" href="/auth/logout">Logout </a> 
+        {{else}}
+          <a class="nav-link" href="/auth/login">Login </a>
+          <a class="nav-link" href="/auth/signup">Sign up </a>
+        {{/if}}
+
+      </div>
+ 
     </nav>
-
-
 
     {{{body}}}
 
     <script src="/js/script.js"></script>
+    
   </body>
 
 </html>

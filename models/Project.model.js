@@ -2,6 +2,10 @@ const { Schema, model } = require("mongoose");
 
 
 const projectSchema = new Schema({
+  projectName: {
+    type: String,
+    required: true
+  },
   endPointsLink: {
     type: String,
     required: true

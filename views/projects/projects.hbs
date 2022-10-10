@@ -1,13 +1,46 @@
-
 {{#if projects}}
-{{#each projects}}
+	{{#each projects}}
 
-<a href="{{this.endPointsLink}}" target="_blank">{{this.endPointsLink}}</a>
-{{#if this.clientSideLink}}
-<a href="{{this.clientSideLink}}">{{this.clientSideLink}}</a>
-{{/if}}
-{{/each}}
+
+		
+		<div class='card mt-3'>
+
+			<div class='card-title px-3 pt-2 d-flex justify-content-between align-items-center'>
+
+				<p class='card-title'> {{projectName}} </p>
+
+				{{#if (isOwner ../session.user._id owner._id) }}
+
+					<form action="/projects/{{_id}}/delete" method="POST" class="d-flexjustify-content-between">
+
+						<a href="/projects/{{_id}}/edit" class="btn btn-outline-warning"> Edit </a>
+						
+						<button type="submit" class="btn btn-outline-danger"> Delete </button>
+
+					</form>
+
+				{{/if }}
+
+			</div>
+
+			<ul class='list-group'>
+
+				<li class='list-group-item'>
+					<p class='card-text'> Backend link: </p>
+					<a class='card-link' href='{{endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
+				</li>
+
+				{{#if this.clientSideLink}}
+					<li class='list-group-item mt-1'>
+						<p class='card-text'> Frontend link: </p>
+						<a class='card-link' href='{{clientSideLink}}'>{{this.clientSideLink}}</a>
+					</li>
+				{{/if}}
+
+			</ul>
+		</div>
+	{{/each}}
+
 {{else}}
-
-<h1>there is no project here</h1>
+	<h1>there is no project here</h1>
 {{/if}}

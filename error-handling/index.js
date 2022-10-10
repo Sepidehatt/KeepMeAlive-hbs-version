@@ -9,9 +9,13 @@ module.exports = (app) => {
     // always logs the error
     console.error("ERROR: ", req.method, req.path, err);
 
+    if(err.type === "ownership") {
+      res.status(err.status).render("ownership-error")
+    }
+
     // only render if the error ocurred before sending the response
     if (!res.headersSent) {
-      res.status(500).res.render("error");
+      res.status(500).render("error");
     }
   });
 };

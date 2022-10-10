@@ -1,14 +1,32 @@
-<form action="/auth/login" method="POST">
-   <label> Username
-      <input type="text" name="username">
-   </label>
-   <label> Password
-      <input type="password" name="password">
-   </label>
+<div class='d-flex justify-content-center'>
 
-   <button type="submit">Submit</button>
-</form>
+	{{#if errorMessage}}
+		{{errorMessage}}
+	{{/if}}
 
-{{#if errorMessage}}
-   {{errorMessage}}
-{{/if}}
+	<form
+		class='d-flex flex-column w-50 mt-3 border border-primary px-3 py-3 rounded'
+		action='/auth/login'
+		method='POST'
+	>
+		<label class='form-label'>
+			Username:
+			<input class='form-control' type='text' name='username' />
+		</label>
+
+		<label class='form-label'>
+			Password:
+			<input class='form-control' type='password' name='password' />
+		</label>
+
+		<div class='d-flex justify-content-center'>
+
+			<button class='btn btn-primary mt-3 me-2 w-25' type='submit'> Login </button>
+			
+			<button class='btn btn-outline-danger mt-3' type='reset'> Cancel </button>
+		
+    </div>
+
+	</form>
+
+</div>

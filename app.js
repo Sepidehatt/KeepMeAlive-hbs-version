@@ -23,13 +23,29 @@ const projectName = "new-app";
 
 app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
 
+app.use((req, res, next) => {
+    res.locals.session = req.session
+    // console.log(res.locals.session)
+    next()
+})
+
+hbs.registerHelper('isOwner', function(){
+    let sessionId = arguments[0]
+    let projectOwnerId = arguments[1]
+
+    if (sessionId == projectOwnerId) {
+        return true
+    }
+    return false
+
+});
+
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
 app.use("/", index);
 
 const projectRoutes = require("./routes/projects.routes")
 app.use("/projects", projectRoutes)
-
 
 const authRoutes = require("./routes/auth.routes");
 app.use("/auth", authRoutes);
