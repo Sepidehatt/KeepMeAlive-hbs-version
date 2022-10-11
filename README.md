@@ -74,5 +74,5 @@ router.get('/keep-alive', (req, res, next) => {
 
 A project by:
 
-[Felipe Leite Mantovani's GitHub](https://github.com/F-Mantovani)
+[Felipe Leite Mantovani's GitHub](https://github.com/F-Mantovani) <br/>
 [Sepideh Attar's GitHub](https://github.com/Sepidehatt)
