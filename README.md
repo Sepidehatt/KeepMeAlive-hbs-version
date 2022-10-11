@@ -69,3 +69,10 @@ router.get('/keep-alive', (req, res, next) => {
     .catch();
 });
 ```
+
+---
+
+A project by:
+
+[Felipe Leite Mantovani's GitHub](https://github.com/F-Mantovani)
+[Sepideh Attar's GitHub](https://github.com/Sepidehatt)
