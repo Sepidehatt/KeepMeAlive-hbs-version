@@ -10,18 +10,19 @@ const projectSchema = new Schema({
     type: String,
     required: true
   },
-  clientSideLink: {
-    type: String,
-    // required: true
-  },
-  activeUserName: {
-    type: String,
-    required: true
-  },
-  activePassword: {
-    type: String,
-    required: true
-  },
+  // This piece of code is to be decided after if we keep it or not
+  // clientSideLink: {
+  //   type: String,
+  //   required: true
+  // },
+  // activeUserName: {
+  //   type: String,
+  //   required: true
+  // },
+  // activePassword: {
+  //   type: String,
+  //   required: true
+  // },
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User'
@@ -37,16 +38,3 @@ const projectSchema = new Schema({
 
 const Project = model("Project", projectSchema)
 module.exports = Project;
-
-
-
-
-
-// const arr =[a,b,c,d]
-
-// arr.forEach( (element)=>{
-//   axios.post('${element}')
-//   .then()
-//   .catch()
-// })
-

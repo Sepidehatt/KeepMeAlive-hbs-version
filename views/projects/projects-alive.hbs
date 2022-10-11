@@ -1,5 +1,27 @@
-<div>
+<div class="d-flex flex-column align-items-center justify-content-center">
 
-  <h3> All projects were kept alive </h3>
+  <h3> {{successfully}} projects were kept alive </h3>
+
+  {{#if crash}}
+    
+    <h2> Those projects failed </h2>
+
+    {{#each crash}}
+
+      <div class="card">
+
+        <div class="card-body">
+
+          <h5 class="card-title"> {{project}} </h5>
+
+          <p class="card-text"> by {{owner}}</p>
+
+        </div>
+        
+      </div>
+      
+    {{/each}}
+
+  {{/if}}
   
 </div>
