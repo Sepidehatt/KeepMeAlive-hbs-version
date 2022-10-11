@@ -18,12 +18,18 @@ router.get('/add-project', isLoggedIn, (req, res) => {
 });
 
 router.post('/add-project', isLoggedIn, (req, res) => {
-	const newProject = JSON.parse(JSON.stringify(req.body));
+
+	const { projectName, endPointsLink } = req.body
+
+	if (!projectName || !endPointsLink) {
+		return res.status(400).render('projects/add-project', {
+      errorMessage: "Please fill out the form",
+    })
+	}
+
 	const id = req.session.user._id;
 
-	newProject.owner = id;
-
-	Project.create(newProject)
+	Project.create({ projectName, endPointsLink, owner: id})
 		.then(() => res.redirect('/'))
 		.catch(err => {
 			console.log('error creating Project on DB', err);
@@ -32,16 +38,25 @@ router.post('/add-project', isLoggedIn, (req, res) => {
 });
 
 router.get('/keep-them-alive', (req, res, next) => {
+	let successfully = 0
+	let crash = []
+
 	Project.find()
 		.then(projects => {
 			projects.forEach(project => {
-				axios.get(project.endPointsLink).then(response => {
-					console.log(response.data);
+				axios.get(project.endPointsLink)
+				.then(response => {
+					console.log(response.data)
+					successfully += 1
+					})
+				.catch(err => {
+					console.log(`Error keeping alive... ${project.projectName}`, err)
+					crash.push({ project: project.projectName, owner: project.userName })
 				});
 			});
 		})
 		.then(() => {
-			res.render('projects/projects-alive');
+			res.render('projects/projects-alive', { successfully, crash });
 		})
 		.catch(err => {
 			console.log('error => ', err);
@@ -65,6 +80,7 @@ router.get('/:projectId/edit', isLoggedIn, (req, res, next) => {
 			next(err);
 		});
 });
+
 
 router.post('/:projectId/edit', isLoggedIn, (req, res, next) => {
 	const { projectId } = req.params;

@@ -1,46 +1,56 @@
 {{#if projects}}
+
 	{{#each projects}}
 
-
-		
 		<div class='card mt-3'>
 
-			<div class='card-title px-3 pt-2 d-flex justify-content-between align-items-center'>
+			<div class="card-body">
 
-				<p class='card-title'> {{projectName}} </p>
+				<div class='card-title px-3 pt-2 d-flex justify-content-between align-items-center'>
 
-				{{#if (isOwner ../session.user._id owner._id) }}
+					<p class='card-title'> {{projectName}} </p>
 
-					<form action="/projects/{{_id}}/delete" method="POST" class="d-flexjustify-content-between">
+					{{#if (isOwner ../session.user._id owner._id) }}
 
-						<a href="/projects/{{_id}}/edit" class="btn btn-outline-warning"> Edit </a>
-						
-						<button type="submit" class="btn btn-outline-danger"> Delete </button>
+						<form action="/projects/{{_id}}/delete" method="POST" class="d-flexjustify-content-between">
 
-					</form>
+							<a href="/projects/{{_id}}/edit" class="btn btn-outline-warning"> Edit </a>
+							
+							<button type="submit" class="btn btn-danger"> Delete </button>
 
-				{{/if }}
+						</form>
+
+					{{/if }}
+
+				</div>
+
+				<ul class='list-group'>
+
+					<li class='list-group-item'>
+						<p class='card-text'> Backend link: </p>
+						<a class='card-link' href='{{endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
+					</li>
+
+					{{!-- This needs to be decided if maintained of not --}}
+					{{!-- {{#if this.clientSideLink}}
+
+						<li class='list-group-item mt-1'>
+							<p class='card-text'> Frontend link: </p>
+							<a class='card-link' href='{{clientSideLink}}'>{{this.clientSideLink}}</a>
+						</li>
+
+					{{/if}} --}}
+
+				</ul>
 
 			</div>
 
-			<ul class='list-group'>
-
-				<li class='list-group-item'>
-					<p class='card-text'> Backend link: </p>
-					<a class='card-link' href='{{endPointsLink}}' target='_blank'>{{this.endPointsLink}} </a>
-				</li>
-
-				{{#if this.clientSideLink}}
-					<li class='list-group-item mt-1'>
-						<p class='card-text'> Frontend link: </p>
-						<a class='card-link' href='{{clientSideLink}}'>{{this.clientSideLink}}</a>
-					</li>
-				{{/if}}
-
-			</ul>
 		</div>
+
 	{{/each}}
 
 {{else}}
+
 	<h1>there is no project here</h1>
+
 {{/if}}

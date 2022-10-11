@@ -25,7 +25,6 @@ app.locals.appTitle = `${capitalized(projectName)} created with IronLauncher`;
 
 app.use((req, res, next) => {
     res.locals.session = req.session
-    // console.log(res.locals.session)
     next()
 })
 
@@ -54,3 +53,8 @@ app.use("/auth", authRoutes);
 require("./error-handling")(app);
 
 module.exports = app;
+
+
+
+
+

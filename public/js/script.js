@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded',() => {
     spinner.setAttribute('hidden', 'true')
 
     form.addEventListener('click', () => {
-      activePage.innerHTML += 'Keeping all projects alive....' 
+      activePage.innerHTML += '<h2> Keeping all projects alive.... </h2>' 
       form.setAttribute('hidden', 'true')
       spinner.removeAttribute('hidden')
     })  
