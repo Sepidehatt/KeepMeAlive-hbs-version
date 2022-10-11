@@ -1,22 +1,29 @@
 <div class='d-flex justify-content-center'>
 
-	{{#if errorMessage}}
-		{{errorMessage}}
-	{{/if}}
 
 	<form
 		class='d-flex flex-column w-50 mt-3 border border-primary px-3 py-3 rounded'
 		action='/auth/login'
 		method='POST'
 	>
+
+		{{#if errorMessage}}
+
+			<div class="alert alert-danger" role="alert"> 
+				{{errorMessage}} 
+			</div>
+			
+		{{/if}}
+		
 		<label class='form-label'>
 			Username:
-			<input class='form-control' type='text' name='username' />
+			<input class='form-control' type='text' name='username' required/>
 		</label>
 
 		<label class='form-label'>
 			Password:
-			<input class='form-control' type='password' name='password' />
+			<input class='form-control' type='password' name='password' required/>
+			<p class="form-text"> Your password needs to be at least 8 characters long.</p>
 		</label>
 
 		<div class='d-flex justify-content-center'>

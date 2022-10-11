@@ -18,12 +18,18 @@ router.get('/add-project', isLoggedIn, (req, res) => {
 });
 
 router.post('/add-project', isLoggedIn, (req, res) => {
-	const newProject = JSON.parse(JSON.stringify(req.body));
+
+	const { projectName, endPointsLink } = req.body
+
+	if (!projectName || !endPointsLink) {
+		return res.status(400).render('projects/add-project', {
+      errorMessage: "Please fill out the form",
+    })
+	}
+
 	const id = req.session.user._id;
 
-	newProject.owner = id;
-
-	Project.create(newProject)
+	Project.create({ projectName, endPointsLink, owner: id})
 		.then(() => res.redirect('/'))
 		.catch(err => {
 			console.log('error creating Project on DB', err);
