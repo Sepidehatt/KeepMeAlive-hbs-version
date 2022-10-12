@@ -12,10 +12,7 @@
 
 - An app where users can add their projects. The app will keep them alive.
 
-<br/>
-
 - Online version: https://keep.fly.dev/
-
 
 ### How the app keeps a project alive?
 
@@ -47,11 +44,7 @@ router.get('/keep-alive', (req, res, next) => {
 
 2. Go to [Keep me Alive](https://keep.fly.dev/)
 
-<br/>
-
 3. Register an account
-
-<br/>
 
 4. Submit the backend link that do one request to the DB and doesn't return any information aside from the `.json({ message: 'It worked' || "It didn't work' })`
 
