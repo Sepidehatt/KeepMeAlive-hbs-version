@@ -12,6 +12,11 @@
 
 - An app where users can add their projects. The app will keep them alive.
 
+- Online version:
+  - https://keep.fly.dev/
+
+  - https://keep-me-alive.herokuapp.com/
+
 ### How the app keeps a project alive?
 
 - Sends an http request to an endpoint that makes an operation with the database.
