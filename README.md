@@ -12,10 +12,10 @@
 
 - An app where users can add their projects. The app will keep them alive.
 
-- Online version:
-  - https://keep.fly.dev/
+<br/>
 
-  - https://keep-me-alive.herokuapp.com/
+- Online version: https://keep.fly.dev/
+
 
 ### How the app keeps a project alive?
 
@@ -25,7 +25,7 @@
 
 If you're an IronHack student (using the `ironlauncher` package) you can follow the example below:
 
-in the `index.routes.js` you can add the following lines of code:
+1. In the `index.routes.js` you can add the following lines of code:
 
 ```javascript
 const YourModel = require('../models/YourModel.model')
@@ -33,15 +33,27 @@ const YourModel = require('../models/YourModel.model')
 router.get('/keep-alive', (req, res, next) => {
   YourModel.find()
     .then(() => {
-      res.status(200).json({ Message: 'It worked' });
+      res.status(200).json({ message: 'It worked' });
     })
-    .catch();
+    .catch(() => {
+      res.status(500).json({ message: "It didn't work" });
+    });
 });
 ```
 
 - `YourModel` should be one of your models ex.: `Recipes.model.js`
 
 - You shouldn't return the data that you receive from the database, it's not needed.
+
+2. Go to [Keep me Alive](https://keep.fly.dev/)
+
+<br/>
+
+3. Register an account
+
+<br/>
+
+4. Submit the backend link that do one request to the DB and doesn't return any information aside from the `.json({ message: 'It worked' || "It didn't work' })`
 
 ---
 

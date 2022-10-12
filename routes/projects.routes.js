@@ -38,7 +38,7 @@ router.post('/add-project', isLoggedIn, (req, res) => {
 });
 
 router.get('/keep-them-alive', (req, res, next) => {
-	
+
 	Project.find()
 		.then(projects => {
 			projects.forEach(project => {
@@ -48,7 +48,6 @@ router.get('/keep-them-alive', (req, res, next) => {
 					})
 				.catch(err => {
 					console.log(`Error keeping alive... ${project.projectName}`, err)
-					crash.push({ project: project.projectName, owner: project.userName })
 				});
 			});
 		})
