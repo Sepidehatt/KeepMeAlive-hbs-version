@@ -38,16 +38,13 @@ router.post('/add-project', isLoggedIn, (req, res) => {
 });
 
 router.get('/keep-them-alive', (req, res, next) => {
-	let successfully = 0
-	let crash = []
-
+	
 	Project.find()
 		.then(projects => {
 			projects.forEach(project => {
 				axios.get(project.endPointsLink)
 				.then(response => {
 					console.log(response.data)
-					successfully += 1
 					})
 				.catch(err => {
 					console.log(`Error keeping alive... ${project.projectName}`, err)
@@ -56,7 +53,7 @@ router.get('/keep-them-alive', (req, res, next) => {
 			});
 		})
 		.then(() => {
-			res.render('projects/projects-alive', { successfully, crash });
+			res.render('projects/projects-alive');
 		})
 		.catch(err => {
 			console.log('error => ', err);
