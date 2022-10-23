@@ -5,6 +5,8 @@ require("dotenv/config");
 // ℹ️ Connects to the database
 require("./db");
 
+const bree = require("./cron-job/bree");
+
 // Handles http requests (express is node js framework)
 // https://www.npmjs.com/package/express
 const express = require("express");
@@ -39,6 +41,10 @@ hbs.registerHelper('isOwner', function(){
 
 });
 
+bree.start()
+    .then(() => console.log('bree started'))
+    .catch((err) => console.log('error starting bree', err))
+
 // 👇 Start handling routes here
 const index = require("./routes/index.routes");
 app.use("/", index);
@@ -47,6 +53,7 @@ const projectRoutes = require("./routes/projects.routes")
 app.use("/projects", projectRoutes)
 
 const authRoutes = require("./routes/auth.routes");
+
 app.use("/auth", authRoutes);
 
 // ❗ To handle errors. Routes that don't exist or errors that you handle in specific routes
