@@ -4,7 +4,7 @@ const bree = new Bree({
   jobs:[
     {
       name: 'keep-alive',
-      interval: 'every 4 days'
+      interval: 'every 20 days'
     }
   ]
 })
