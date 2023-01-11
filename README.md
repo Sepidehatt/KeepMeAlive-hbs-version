@@ -46,7 +46,8 @@ router.get('/keep-alive', (req, res, next) => {
 
 3. Register an account
 
-4. Submit the backend link that do one request to the DB and doesn't return any information aside from the `.json({ message: 'It worked' || "It didn't work' })`
+4. Submit the backend link that do one request to the DB which doesn't return any information aside from the `.json({ message: 'It worked' || "It didn't work' })`
+ex.: `https://plato-db.fly.dev/keep-alive`
 
 ---
 
